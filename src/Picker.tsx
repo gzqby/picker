@@ -550,6 +550,7 @@ function InnerPicker<DateType>(props: PickerProps<DateType>) {
         hideHeader: picker === 'time',
         onSelect: onContextSelect,
         open: mergedOpen,
+        closePanel: ()=> triggerOpen(false),
         defaultOpenValue,
         onDateMouseEnter: onEnter,
         onDateMouseLeave: onLeave,

@@ -13,6 +13,7 @@ import * as React from 'react';
 import type { GenerateConfig } from './generate';
 import type {
   CellRender,
+  ClosePanel,
   Components,
   DisabledTime,
   Locale,
@@ -69,7 +70,7 @@ export type PickerPanelSharedProps<DateType> = {
   dateRender?: DateRender<DateType>;
   /** @deprecated use cellRender instead of monthCellRender */
   monthCellRender?: MonthCellRender<DateType>;
-  renderExtraFooter?: (mode: PanelMode) => React.ReactNode;
+  renderExtraFooter?: (mode: PanelMode, closePanel?: ClosePanel) => React.ReactNode;
 
   // Event
   onSelect?: (value: DateType) => void;
@@ -189,7 +190,7 @@ function PickerPanel<DateType>(props: PickerPanelProps<DateType>) {
   // ============================ State =============================
 
   const panelContext = React.useContext(PanelContext);
-  const { operationRef, onSelect: onContextSelect, hideRanges, defaultOpenValue } = panelContext;
+  const { operationRef, onSelect: onContextSelect, hideRanges, defaultOpenValue, closePanel } = panelContext;
 
   const { inRange, panelPosition, rangedValue, hoverRangedValue } = React.useContext(RangeContext);
   const panelRef = React.useRef<PanelRefProps>({});
@@ -553,7 +554,7 @@ function PickerPanel<DateType>(props: PickerPanelProps<DateType>) {
   };
 
   if (!hideRanges) {
-    extraFooter = getExtraFooter(prefixCls, mergedMode, renderExtraFooter);
+    extraFooter = getExtraFooter(prefixCls, mergedMode, closePanel, renderExtraFooter);
     rangesNode = getRanges({
       prefixCls,
       components,

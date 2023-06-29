@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { OnSelect, PanelMode } from './interface';
+import type { OnSelect, PanelMode, ClosePanel } from './interface';
 
 export type ContextOperationRefProps = {
   onKeyDown?: (e: React.KeyboardEvent<HTMLElement>) => boolean;
@@ -17,6 +17,7 @@ export type PanelContextProps = {
   onSelect?: OnSelect<any>;
   hideRanges?: boolean;
   open?: boolean;
+  closePanel?: ClosePanel;
   mode?: PanelMode;
 
   /** Only used for TimePicker and this is a deprecated prop */

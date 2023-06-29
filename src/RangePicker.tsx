@@ -902,6 +902,7 @@ function InnerRangePicker<DateType>(props: RangePickerProps<DateType>) {
     const extraNode = getExtraFooter(
       prefixCls,
       mergedModes[mergedActivePickerIndex],
+      () => triggerOpen(false, false, 'confirm'),
       renderExtraFooter,
     );
 

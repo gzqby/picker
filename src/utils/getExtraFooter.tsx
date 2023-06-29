@@ -1,16 +1,17 @@
 import * as React from 'react';
-import type { PanelMode } from '../interface';
+import type { PanelMode, ClosePanel } from '../interface';
 
 export default function getExtraFooter(
   prefixCls: string,
   mode: PanelMode,
-  renderExtraFooter?: (mode: PanelMode) => React.ReactNode,
+  closePanel: ClosePanel,
+  renderExtraFooter?: (mode: PanelMode, closePanel: ClosePanel) => React.ReactNode,
 ) {
   if (!renderExtraFooter) {
     return null;
   }
 
   return (
-    <div className={`${prefixCls}-footer-extra`}>{renderExtraFooter(mode)}</div>
+    <div className={`${prefixCls}-footer-extra`}>{renderExtraFooter(mode, closePanel)}</div>
   );
 }
